@@ -13,8 +13,9 @@ class RegionalChatRoomTest {
     void of() {
         //given
         String name = "testRoomName";
+        String regionId = "testRegionId";
         //when
-        RegionalChatRoom regionalChatRoom = RegionalChatRoom.of(name);
+        RegionalChatRoom regionalChatRoom = RegionalChatRoom.of(name, regionId);
         //then
         assertThat(regionalChatRoom).isNotNull();
     }
