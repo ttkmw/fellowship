@@ -1,10 +1,10 @@
-package beyondeyesight.regionalchat;
+package beyondeyesight.chat;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RegionalChatApplicationTests {
+class ChatApplicationTests {
 
     @Test
     void contextLoads() {
