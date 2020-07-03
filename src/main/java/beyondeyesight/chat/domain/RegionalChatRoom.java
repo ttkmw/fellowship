@@ -2,25 +2,25 @@ package beyondeyesight.chat.domain;
 
 import java.util.UUID;
 
-public class RegionalChatRoom {
+public class RegionalChatRoom implements ChatRoom {
 
-    private final String id;
+    private final Id id;
     private final ChatRoomName name;
-    private final RegionId regionId;
+    private final Id regionalId;
 
 
-    private RegionalChatRoom(ChatRoomName name, RegionId regionId) {
-        id = UUID.randomUUID().toString();
+    private RegionalChatRoom(ChatRoomName name, Id regionalId) {
+        this.id = Id.of(UUID.randomUUID().toString());
         this.name = name;
-        this.regionId = regionId;
+        this.regionalId = regionalId;
     }
 
-    public static RegionalChatRoom of(ChatRoomName name, RegionId regionId) {
-        return new RegionalChatRoom(name, regionId);
+    public static RegionalChatRoom of(ChatRoomName name, Id id) {
+        return new RegionalChatRoom(name, id);
     }
 
     public static RegionalChatRoom of(String name, String regionId) {
         ChatRoomName chatRoomName = ChatRoomName.of(name);
-        return of(chatRoomName, RegionId.of(regionId));
+        return of(chatRoomName, Id.of(regionId));
     }
 }
