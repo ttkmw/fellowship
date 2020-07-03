@@ -7,7 +7,7 @@ public class Sender {
         this.id = id;
     }
 
-    static Sender of(String id) {
+    public static Sender of(String id) {
         return new Sender(Id.of(id));
     }
 }
