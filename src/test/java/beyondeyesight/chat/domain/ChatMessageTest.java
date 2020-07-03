@@ -1,5 +1,6 @@
 package beyondeyesight.chat.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -8,6 +9,7 @@ import static org.mockito.Mockito.mock;
 
 class ChatMessageTest {
 
+    @DisplayName("#of() : should return new ChatMessage")
     @Test
     void of() {
         ChatRoom mockChatRoom = mock(ChatRoom.class);
