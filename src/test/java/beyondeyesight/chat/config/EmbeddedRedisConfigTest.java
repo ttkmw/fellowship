@@ -17,9 +17,9 @@ class EmbeddedRedisConfigTest {
     @Autowired
     EmbeddedRedisConfig embeddedRedisConfig;
 
-    @DisplayName("di : should be injected")
-    @Test
-    void dependencyInjection() {
-        assertThat(embeddedRedisConfig).isNotNull();
-    }
+//    @DisplayName("di : should be injected")
+//    @Test
+//    void dependencyInjection() {
+//        assertThat(embeddedRedisConfig).isNotNull();
+//    }
 }
