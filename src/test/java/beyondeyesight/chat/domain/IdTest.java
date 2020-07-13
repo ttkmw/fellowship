@@ -11,7 +11,6 @@ class IdTest {
     @Test
     void of() {
         String testId = "testId";
-
         Id id = Id.of(testId);
         assertThat(id).isNotNull();
     }
