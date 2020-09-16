@@ -8,3 +8,9 @@ spring:
       enabled: false
   freemarker:
     cache: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
