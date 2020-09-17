@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.mockito.ArgumentMatchers.anyString;
@@ -20,6 +21,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
+@ActiveProfiles("test")
 @SpringBootTest(classes = {EmbeddedRedisConfig.class, TestRedisConfig.class})
 public class RedisTemplateTest {
     @Autowired
@@ -33,9 +35,9 @@ public class RedisTemplateTest {
 
     @Test
     public void pubsub() throws InterruptedException, JsonProcessingException {
-        ChatRoom mockChatRoom = mock(ChatRoom.class);
-        Sender mockSender = mock(Sender.class);
-        ChatMessage chatMessage = new ChatMessage(mockChatRoom, mockSender, "body");
+//        ChatRoom mockChatRoom = mock(ChatRoom.class);
+//        Sender mockSender = mock(Sender.class);
+        ChatMessage chatMessage = new ChatMessage("body");
         when(objectMapper.readValue(anyString(), eq(ChatMessage.class))).thenReturn(chatMessage);
         redisTemplate.convertAndSend(TestRedisConfig.CHANNEL_NAME, chatMessage);
         Thread.sleep(50);

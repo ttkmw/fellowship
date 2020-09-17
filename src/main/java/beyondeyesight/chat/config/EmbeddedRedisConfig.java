@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.Objects;
 
-@Profile("local")
+@Profile({"local", "test"})
 @Configuration
 public class EmbeddedRedisConfig {
 
@@ -29,5 +29,4 @@ public class EmbeddedRedisConfig {
             redisServer.stop();
         }
     }
-
 }

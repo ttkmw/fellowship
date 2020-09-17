@@ -2,6 +2,9 @@ package beyondeyesight.chat.config;
 
 import beyondeyesight.chat.domain.ChatMessage;
 import beyondeyesight.chat.infra.RedisSubscriber;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -34,9 +37,16 @@ public class TestRedisConfig {
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory lettuceConnectionFactory) {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+
         redisTemplate.setConnectionFactory(lettuceConnectionFactory);
         redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(ChatMessage.class));
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setVisibility(PropertyAccessor.ALL, Visibility.ANY);
+        Jackson2JsonRedisSerializer<ChatMessage> serializer = new Jackson2JsonRedisSerializer<>(
+            ChatMessage.class);
+        serializer.setObjectMapper(objectMapper);
+        redisTemplate.setValueSerializer(serializer);
+        redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }
 

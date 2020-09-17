@@ -1,9 +1,13 @@
 package beyondeyesight.chat.domain;
 
 public class ChatMessage {
-    private final ChatRoom chatRoom;
-    private final Sender sender;
-    private final String body;
+    private ChatRoom chatRoom;
+    private Sender sender;
+    private String body;
+
+    public ChatMessage(String body) {
+        this.body = body;
+    }
 
     public ChatMessage(ChatRoom chatRoom, Sender sender, String body) {
         this.chatRoom = chatRoom;
