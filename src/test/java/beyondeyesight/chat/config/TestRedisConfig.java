@@ -35,15 +35,15 @@ public class TestRedisConfig {
     }
 
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory lettuceConnectionFactory) {
-        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory lettuceConnectionFactory) {
+        RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
 
         redisTemplate.setConnectionFactory(lettuceConnectionFactory);
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.ALL, Visibility.ANY);
-        Jackson2JsonRedisSerializer<ChatMessage> serializer = new Jackson2JsonRedisSerializer<>(
-            ChatMessage.class);
+        Jackson2JsonRedisSerializer<String> serializer = new Jackson2JsonRedisSerializer<>(
+            String.class);
         serializer.setObjectMapper(objectMapper);
         redisTemplate.setValueSerializer(serializer);
         redisTemplate.afterPropertiesSet();

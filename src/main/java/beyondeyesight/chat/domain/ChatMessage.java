@@ -1,5 +1,6 @@
 package beyondeyesight.chat.domain;
 
+//todo: check if serializable is needed
 public class ChatMessage {
     private ChatRoom chatRoom;
     private Sender sender;
