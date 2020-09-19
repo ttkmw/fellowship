@@ -17,7 +17,7 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 class RedisPublisherTest {
     @Mock
-    private RedisTemplate<String, String> mockRedisTemplate;
+    private RedisTemplate<String, Object> mockRedisTemplate;
 
     @Test
     void publish() {

@@ -1,8 +1,8 @@
 package beyondeyesight.chat.config;
 
-import beyondeyesight.chat.domain.ChatMessage;
+import static org.mockito.Mockito.mock;
+
 import beyondeyesight.chat.infra.RedisSubscriber;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,8 +19,6 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 
-import static org.mockito.Mockito.mock;
-
 @Import({LettuceConnectionFactory.class})
 @TestConfiguration
 public class TestRedisConfig {
@@ -35,8 +33,8 @@ public class TestRedisConfig {
     }
 
     @Bean
-    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory lettuceConnectionFactory) {
-        RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory lettuceConnectionFactory) {
+        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
 
         redisTemplate.setConnectionFactory(lettuceConnectionFactory);
         redisTemplate.setKeySerializer(new StringRedisSerializer());

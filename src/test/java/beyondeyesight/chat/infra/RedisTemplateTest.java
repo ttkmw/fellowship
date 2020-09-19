@@ -26,7 +26,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @Disabled
 public class RedisTemplateTest {
     @Autowired
-    private RedisTemplate<String, String> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
     private SimpMessageSendingOperations simpMessageSendingOperations;
@@ -37,8 +37,6 @@ public class RedisTemplateTest {
     @Test
     @Disabled
     public void pubsub() throws InterruptedException, JsonProcessingException {
-//        ChatRoom mockChatRoom = mock(ChatRoom.class);
-//        Sender mockSender = mock(Sender.class);
         ChatMessage chatMessage = new ChatMessage("body");
         when(objectMapper.readValue(anyString(), eq(ChatMessage.class))).thenReturn(chatMessage);
         redisTemplate.convertAndSend(TestRedisConfig.CHANNEL_NAME, chatMessage);
