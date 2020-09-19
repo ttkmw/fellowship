@@ -1,9 +1,7 @@
 package beyondeyesight.chat.infra;
 
 import beyondeyesight.chat.domain.ChatMessage;
-import beyondeyesight.chat.domain.Sender;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.micrometer.core.lang.NonNullApi;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.data.redis.core.RedisTemplate;
