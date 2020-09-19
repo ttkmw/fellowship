@@ -2,6 +2,7 @@ package beyondeyesight.chat.config;
 
 import static org.mockito.Mockito.mock;
 
+import beyondeyesight.chat.domain.ChatMessage;
 import beyondeyesight.chat.infra.RedisSubscriber;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -33,15 +34,15 @@ public class TestRedisConfig {
     }
 
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory lettuceConnectionFactory) {
-        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+    public RedisTemplate<String, ChatMessage> redisTemplate(RedisConnectionFactory lettuceConnectionFactory) {
+        RedisTemplate<String, ChatMessage> redisTemplate = new RedisTemplate<>();
 
         redisTemplate.setConnectionFactory(lettuceConnectionFactory);
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.ALL, Visibility.ANY);
-        Jackson2JsonRedisSerializer<String> serializer = new Jackson2JsonRedisSerializer<>(
-            String.class);
+        Jackson2JsonRedisSerializer<ChatMessage> serializer = new Jackson2JsonRedisSerializer<>(
+            ChatMessage.class);
         serializer.setObjectMapper(objectMapper);
         redisTemplate.setValueSerializer(serializer);
         redisTemplate.afterPropertiesSet();

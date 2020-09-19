@@ -2,29 +2,17 @@ package beyondeyesight.chat.domain;
 
 //todo: check if serializable is needed
 public class ChatMessage {
-    private ChatRoom chatRoom;
-    private Sender sender;
-    private String body;
+    private final ChatRoom chatRoom;
+    private final Sender sender;
+    private final String body;
 
-    public ChatMessage(String body) {
-        this.body = body;
-    }
-
-    public ChatMessage(ChatRoom chatRoom, Sender sender, String body) {
+    private ChatMessage(ChatRoom chatRoom, Sender sender, String body) {
         this.chatRoom = chatRoom;
         this.sender = sender;
         this.body = body;
     }
 
-    static ChatMessage of(ChatRoom chatRoom, Sender sender) {
-        return new ChatMessage(chatRoom, sender, "body");
-    }
-
-    public ChatRoom getChatRoom() {
-        return chatRoom;
-    }
-
-    public Sender getSender() {
-        return sender;
+    public static ChatMessage of(ChatRoom chatRoom, Sender sender, String body) {
+        return new ChatMessage(chatRoom, sender, body);
     }
 }

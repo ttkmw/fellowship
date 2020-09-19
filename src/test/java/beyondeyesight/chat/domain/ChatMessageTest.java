@@ -13,7 +13,7 @@ class ChatMessageTest {
     void of() {
         ChatRoom mockChatRoom = mock(ChatRoom.class);
         Sender mockSender = mock(Sender.class);
-        ChatMessage chatMessage = ChatMessage.of(mockChatRoom, mockSender);
+        ChatMessage chatMessage = ChatMessage.of(mockChatRoom, mockSender, "testBody");
         assertThat(chatMessage).isNotNull();
     }
 }

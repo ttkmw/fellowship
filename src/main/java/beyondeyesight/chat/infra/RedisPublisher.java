@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RedisPublisher {
-    private final RedisTemplate<String, Object> redisTemplate;
+    private final RedisTemplate<String, ChatMessage> redisTemplate;
 
-    public RedisPublisher(RedisTemplate<String, Object> redisTemplate) {
+    public RedisPublisher(RedisTemplate<String, ChatMessage> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 

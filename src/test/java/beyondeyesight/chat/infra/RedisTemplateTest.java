@@ -2,12 +2,17 @@ package beyondeyesight.chat.infra;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.withSettings;
 
 import beyondeyesight.chat.config.EmbeddedRedisConfig;
 import beyondeyesight.chat.config.TestRedisConfig;
 import beyondeyesight.chat.domain.ChatMessage;
+import beyondeyesight.chat.domain.ChatRoom;
+import beyondeyesight.chat.domain.RegionalChatRoom;
+import beyondeyesight.chat.domain.Sender;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
@@ -23,10 +28,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
 @SpringBootTest(classes = {EmbeddedRedisConfig.class, TestRedisConfig.class})
-@Disabled
 public class RedisTemplateTest {
     @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+    private RedisTemplate<String, ChatMessage> redisTemplate;
 
     @Autowired
     private SimpMessageSendingOperations simpMessageSendingOperations;
@@ -35,9 +39,10 @@ public class RedisTemplateTest {
     private ObjectMapper objectMapper;
 
     @Test
-    @Disabled
     public void pubsub() throws InterruptedException, JsonProcessingException {
-        ChatMessage chatMessage = new ChatMessage("body");
+        ChatRoom mockChatRoom = RegionalChatRoom.of("testRoomName", "testRegionalId");
+        Sender mockSender = Sender.of("testId");
+        ChatMessage chatMessage = ChatMessage.of(mockChatRoom, mockSender, "testBody");
         when(objectMapper.readValue(anyString(), eq(ChatMessage.class))).thenReturn(chatMessage);
         redisTemplate.convertAndSend(TestRedisConfig.CHANNEL_NAME, chatMessage);
         Thread.sleep(50);
