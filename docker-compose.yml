@@ -11,4 +11,12 @@ services:
     - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
     environment:
     - REDIS_REPLICATION_MODE=master
+  cassandra:
+    image: cassandra:latest
+    container_name: cassandra
+    restart: always
+    ports:
+    - "9042:9042"
+    volumes:
+      - ./out/cassandra_data:/var/lib/cassandra
 
