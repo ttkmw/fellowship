@@ -9,7 +9,6 @@ import beyondeyesight.chat.config.EmbeddedRedisConfig;
 import beyondeyesight.chat.config.TestRedisConfig;
 import beyondeyesight.chat.domain.ChatMessage;
 import beyondeyesight.chat.domain.ChatRoom;
-import beyondeyesight.chat.domain.RegionalChatRoom;
 import beyondeyesight.chat.domain.Sender;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -37,7 +36,7 @@ public class RedisTemplateTest {
 
     @Test
     public void pubsub() throws InterruptedException, JsonProcessingException {
-        ChatRoom mockChatRoom = RegionalChatRoom.of("testRoomName", "testRegionalId");
+        ChatRoom mockChatRoom = ChatRoom.of("testRoomName");
         Sender mockSender = Sender.of("testId");
         ChatMessage chatMessage = ChatMessage.of(mockChatRoom, mockSender, "testBody");
         when(objectMapper.readValue(anyString(), eq(ChatMessage.class))).thenReturn(chatMessage);

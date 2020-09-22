@@ -5,17 +5,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class RegionalChatRoomTest {
+class ChatRoomTest {
 
     @DisplayName("#of() : should return new RegionalChatRoom")
     @Test
     void of() {
         //given
         String name = "testRoomName";
-        String regionId = "testRegionId";
         //when
-        RegionalChatRoom regionalChatRoom = RegionalChatRoom.of(name, regionId);
+        ChatRoom chatRoom = ChatRoom.of(name);
         //then
-        assertThat(regionalChatRoom).isNotNull();
+        assertThat(chatRoom).isNotNull();
     }
 }
