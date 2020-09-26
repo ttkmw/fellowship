@@ -19,4 +19,8 @@ services:
     - "9042:9042"
     volumes:
       - ./out/cassandra_data:/var/lib/cassandra
-
+    environment:
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_DC=DC1
+#    datacenter 이름이 기존과 다르다면 아래 설정 필요
+#    command: -Dcassandra.ignore_dc=true

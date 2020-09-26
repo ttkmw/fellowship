@@ -35,7 +35,6 @@ public class TestCassandraConfig extends AbstractCassandraConfiguration {
         cqlSessionFactoryBean.setContactPoints(contactPoints);
         cqlSessionFactoryBean.setPort(port);
         cqlSessionFactoryBean.setKeyspaceName(keyspaceName);
-        //todo: datacenter 이름 지정해주기
         cqlSessionFactoryBean.setLocalDatacenter(localDatacenter);
 
         //todo: 걍 CreateKeyspaceSpecification.createKeyspace 만 해도 될듯?
