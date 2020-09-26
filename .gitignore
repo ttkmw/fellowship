@@ -21,6 +21,9 @@ build/
 *.ipr
 out/
 
+### Gradle ###
+.target
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
