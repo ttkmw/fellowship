@@ -14,7 +14,6 @@ import org.springframework.data.cassandra.repository.config.EnableCassandraRepos
 
 @Profile("local")
 @Configuration
-//todo: basePakages가 꼭 필요한지 확인
 @EnableCassandraRepositories(basePackages = "beyondeyesight.chat.infra.persistence")
 public class CassandraConfig extends AbstractCassandraConfiguration {
 
