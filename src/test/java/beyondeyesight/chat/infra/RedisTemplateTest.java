@@ -35,7 +35,6 @@ public class RedisTemplateTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    //todo: 돌리기
     @Test
     public void pubsub() throws InterruptedException, JsonProcessingException {
         ChatRoom mockChatRoom = ChatRoom.of("testRoomName");
