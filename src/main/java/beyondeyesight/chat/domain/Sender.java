@@ -1,6 +1,5 @@
 package beyondeyesight.chat.domain;
 
-import java.util.Objects;
 import java.util.UUID;
 import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 
