@@ -1,25 +1,23 @@
 package beyondeyesight.chat.domain;
 
+import java.util.Objects;
 import java.util.UUID;
+import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 
+@UserDefinedType("chatroom")
 public class ChatRoom {
 
-    private final Id id;
-    private final ChatRoomName name;
+    private final UUID id;
 
+    private final String name;
 
-    private ChatRoom(ChatRoomName name) {
+    public ChatRoom(String name) {
         //todo: region 서비스를 만들면, id를 받아서 생성
-        this.id = Id.of(UUID.randomUUID().toString());
+        this.id = UUID.randomUUID();
         this.name = name;
     }
 
-    public static ChatRoom of(ChatRoomName name) {
-        return new ChatRoom(name);
-    }
-
     public static ChatRoom of(String name) {
-        ChatRoomName chatRoomName = ChatRoomName.of(name);
-        return of(chatRoomName);
+        return new ChatRoom(name);
     }
 }

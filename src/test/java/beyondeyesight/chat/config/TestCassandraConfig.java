@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.cassandra.config.AbstractCassandraConfiguration;
 import org.springframework.data.cassandra.config.CqlSessionFactoryBean;
+import org.springframework.data.cassandra.config.SchemaAction;
 import org.springframework.data.cassandra.core.cql.keyspace.CreateKeyspaceSpecification;
 import org.springframework.lang.NonNull;
 
@@ -48,9 +49,21 @@ public class TestCassandraConfig extends AbstractCassandraConfiguration {
         return cqlSessionFactoryBean;
     }
 
+    @Override
+    @Nonnull
+    public SchemaAction getSchemaAction() {
+        return SchemaAction.RECREATE;
+    }
+
     @NonNull
     @Override
     protected String getKeyspaceName() {
         return keyspaceName;
+    }
+
+    @Override
+    @Nonnull
+    public String[] getEntityBasePackages() {
+        return new String[] {"beyondeyesight.chat.domain"};
     }
 }

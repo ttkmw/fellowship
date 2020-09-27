@@ -60,7 +60,8 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     @Override
     @Nonnull
     public SchemaAction getSchemaAction() {
-        return SchemaAction.CREATE_IF_NOT_EXISTS;
+        //todo: 운영시 스키마 정책 확인
+        return SchemaAction.RECREATE;
     }
 
     @Override
