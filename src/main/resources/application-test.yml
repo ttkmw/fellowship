@@ -8,6 +8,6 @@ spring:
     cassandra:
       contact-points: localhost
 #     todo: 테스트용 임베디드 카산드라를 쓸 때 9142로 바꾸는게 좋을 듯
-      port: 9042
+      port: 9142
       keyspace-name: testKeySpace
-      local-datacenter: DC1
+      local-datacenter: datacenter1

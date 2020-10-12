@@ -30,4 +30,14 @@ public class ChatMessage {
     public static ChatMessage of(ChatRoom chatRoom, Sender sender, String body) {
         return new ChatMessage(chatRoom, sender, body);
     }
+
+    @Override
+    public String toString() {
+        return "ChatMessage{" +
+            "id=" + id +
+            ", chatRoom=" + chatRoom +
+            ", sender=" + sender +
+            ", body='" + body + '\'' +
+            '}';
+    }
 }

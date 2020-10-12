@@ -7,6 +7,6 @@ spring:
   data:
     cassandra:
       contact-points: localhost
-      port: 9042
+      port: 9142
       keyspace-name: testKeySpace
-      local-datacenter: DC1
+      local-datacenter: datacenter1

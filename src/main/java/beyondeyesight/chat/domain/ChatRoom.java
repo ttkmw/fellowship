@@ -19,4 +19,12 @@ public class ChatRoom {
     public static ChatRoom of(String name) {
         return new ChatRoom(name);
     }
+
+    @Override
+    public String toString() {
+        return "ChatRoom{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            '}';
+    }
 }

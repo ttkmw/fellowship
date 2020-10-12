@@ -31,13 +31,31 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
     implementation 'org.springframework.boot:spring-boot-starter-data-cassandra'
     implementation 'org.springframework.security:spring-security-rsa'
+    // https://mvnrepository.com/artifact/org.cassandraunit/cassandra-unit
+//    testCompile group: 'org.cassandraunit', name: 'cassandra-unit', version: '2.1.9.2'
+
+    testCompile('org.cassandraunit:cassandra-unit-spring:2.2.2.1')
+    compile("com.datastax.cassandra:cassandra-driver-core:2.1.7.1")
+    compile("com.datastax.cassandra:cassandra-driver-dse:2.1.7.1")
+    // https://mvnrepository.com/artifact/org.cassandraunit/cassandra-unit-shaded
+    compile group: 'org.cassandraunit', name: 'cassandra-unit-shaded', version: '2.1.9.2'
+    // https://mvnrepository.com/artifact/org.hectorclient/hector-core
+    compile group: 'org.hectorclient', name: 'hector-core', version: '2.0-0'
+
+    compile group: 'org.hectorclient', name: 'hector-core', version: '2.0-0'
+    // https://mvnrepository.com/artifact/com.google.guava/guava
+    //todo: 왜 다른 의존성에 안딸아오는지 체크
+    compile group: 'com.google.guava', name: 'guava', version: '19.0'
+
+
     implementation 'it.ozimov:embedded-redis:0.7.2'
     implementation 'org.springframework.cloud:spring-cloud-config-client'
     implementation 'org.projectlombok:lombok'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.mockito:mockito-core'
 }
+
 
 test {
     useJUnitPlatform()
