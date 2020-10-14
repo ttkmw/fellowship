@@ -14,15 +14,15 @@ build/
 .springBeans
 .sts4-cache
 
+### Gradle ###
+target
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
 out/
-
-### Gradle ###
-.target
 
 ### NetBeans ###
 /nbproject/private/
