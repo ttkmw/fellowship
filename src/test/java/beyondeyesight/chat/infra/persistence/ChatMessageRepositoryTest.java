@@ -42,7 +42,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 @SpringBootTest
 @ActiveProfiles("test")
 @ContextConfiguration(classes = TestCassandraConfig.class)
-@CassandraDataSet(keyspace = "testKeySpace", value = {"dataset.cql"})
+@CassandraDataSet(keyspace = "testKeySpace")
 @TestExecutionListeners(listeners = {
     CassandraUnitDependencyInjectionTestExecutionListener.class,
     DependencyInjectionTestExecutionListener.class}
@@ -76,35 +76,5 @@ public class ChatMessageRepositoryTest {
 
         chatMessage = chatMessageRepository.save(chatMessage);
         assertThat(chatMessage).isNotNull();
-        System.out.println("kkkk");
-        System.out.println(chatMessage);
     }
-//    @After
-//    public void dropTable() {
-//        adminTemplate.dropTable(CqlIdentifier.fromCql(DATA_TABLE_NAME));
-//    }
-//
-//    @Before
-//    public void createTable() throws InterruptedException, TTransportException, ConfigurationException, IOException {
-//        adminTemplate.createTable(true, CqlIdentifier.fromCql(DATA_TABLE_NAME), ChatMessage.class, new HashMap<String, Object>());
-//    }
-//
-//
-//    @BeforeClass
-//    public static void startCassandraEmbedded()
-//        throws InterruptedException, TTransportException, ConfigurationException, IOException {
-//        EmbeddedCassandraServerHelper.startEmbeddedCassandra();
-//        final Cluster cluster = Cluster.builder().addContactPoints("localhost").withPort(9042).build();
-//        LOGGER.info("Server Started at 127.0.0.1:9142... ");
-//        final Session session = cluster.connect();
-//        session.execute(KEYSPACE_CREATION_QUERY);
-//        session.execute(KEYSPACE_ACTIVATE_QUERY);
-//        LOGGER.info("KeySpace created and activated.");
-//        Thread.sleep(5000);
-//    }
-//
-//    @AfterClass
-//    public static void stopCassandraEmbedded() {
-//        EmbeddedCassandraServerHelper.cleanEmbeddedCassandra();
-//    }
 }
