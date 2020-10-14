@@ -6,64 +6,32 @@ import beyondeyesight.chat.config.TestCassandraConfig;
 import beyondeyesight.chat.domain.ChatMessage;
 import beyondeyesight.chat.domain.ChatRoom;
 import beyondeyesight.chat.domain.Sender;
-import com.datastax.driver.core.Cluster;
-import com.datastax.driver.core.Session;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.UUID;
-import org.apache.cassandra.exceptions.ConfigurationException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.thrift.transport.TTransportException;
-import org.cassandraunit.spring.CassandraDataSet;
 import org.cassandraunit.spring.CassandraUnitDependencyInjectionTestExecutionListener;
-import org.cassandraunit.utils.EmbeddedCassandraServerHelper;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
+import org.cassandraunit.spring.EmbeddedCassandra;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.cassandra.core.CassandraAdminOperations;
-import com.datastax.oss.driver.api.core.CqlIdentifier;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.cassandraunit.spring.EmbeddedCassandra;
 import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 
-@SpringBootTest
+/*
+ * reference: https://github.com/omlip/cassandra-unit-spring-demo
+ * */
+@SpringBootTest(classes = TestCassandraConfig.class)
 @ActiveProfiles("test")
-@ContextConfiguration(classes = TestCassandraConfig.class)
-@CassandraDataSet(keyspace = "testKeySpace")
 @TestExecutionListeners(listeners = {
     CassandraUnitDependencyInjectionTestExecutionListener.class,
     DependencyInjectionTestExecutionListener.class}
 )
-@TestPropertySource(properties = {"spring.config.location=classpath:application-test.yml"})
 @EmbeddedCassandra(timeout = 60000)
 public class ChatMessageRepositoryTest {
 
-    private static final Log LOGGER = LogFactory.getLog(ChatMessageRepositoryTest.class);
-
-    public static final String KEYSPACE_CREATION_QUERY = "CREATE KEYSPACE IF NOT EXISTS testKeySpace WITH replication = { 'class': 'SimpleStrategy', 'replication_factor': '3' };";
-
-    public static final String KEYSPACE_ACTIVATE_QUERY = "USE testKeySpace;";
-
-    public static final String DATA_TABLE_NAME = "book";
-
     @Autowired
     private ChatMessageRepository chatMessageRepository;
-
-//    @Autowired
-//    private CassandraAdminOperations adminTemplate;
 
 
     //todo: ID 생성을 DB 레벨에서 할 수 있는지 확인. 애플리케이션에서는 ID 안넣어도 DB에서 생성해주는지.
@@ -72,7 +40,7 @@ public class ChatMessageRepositoryTest {
     void save() {
         ChatRoom chatRoom = ChatRoom.of("chatRoom");
         Sender sender = Sender.of(UUID.randomUUID());
-        ChatMessage chatMessage = ChatMessage.of(chatRoom, sender,"haha");
+        ChatMessage chatMessage = ChatMessage.of(chatRoom, sender, "chatBody");
 
         chatMessage = chatMessageRepository.save(chatMessage);
         assertThat(chatMessage).isNotNull();
