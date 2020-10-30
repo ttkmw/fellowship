@@ -1,13 +1,17 @@
 package beyondeyesight.chat.domain;
 
 import java.util.UUID;
-import org.springframework.data.cassandra.core.mapping.UserDefinedType;
+import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
+import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
+import org.springframework.data.cassandra.core.mapping.Table;
 
-@UserDefinedType("chatroom")
+@Table("chat_room")
 public class ChatRoom {
 
+    @PrimaryKeyColumn(name = "room_id", type = PrimaryKeyType.CLUSTERED, ordinal = 1)
     private final UUID id;
 
+    @PrimaryKeyColumn(name = "name", type = PrimaryKeyType.PARTITIONED, ordinal = 0)
     private final String name;
 
     private ChatRoom(String name) {
