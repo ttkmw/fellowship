@@ -38,10 +38,10 @@ public class ChatMessageRepositoryTest {
     @DisplayName("#save() : should not be null after saving entity")
     @Test
     void save() {
-        ChatRoom chatRoom = ChatRoom.of("chatRoom");
+        UUID chatRoomId = UUID.randomUUID();
         Sender sender = Sender.of(UUID.randomUUID());
-        ChatMessage chatMessage = ChatMessage.of(chatRoom, sender, "chatBody");
-
+        ChatMessage chatMessage = ChatMessage.of(chatRoomId, sender, "chatBody");
+        
         chatMessage = chatMessageRepository.save(chatMessage);
         assertThat(chatMessage).isNotNull();
     }

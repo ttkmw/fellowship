@@ -1,41 +1,46 @@
 package beyondeyesight.chat.domain;
 
 import java.util.UUID;
+import lombok.Setter;
+import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.Column;
-import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 
+
 //todo: check if serializable is needed
+@Setter
 @Table
 public class ChatMessage {
 
-    @PrimaryKey
-    private final UUID id;
+    @PrimaryKeyColumn(name = "msg_id", type = PrimaryKeyType.CLUSTERED, ordinal = 1)
+    private UUID id;
     //todo: 이거 확인. converting..?
 //    @CassandraType(type = Name.UDT, userTypeName = "chatRoom")
     //todo: ChatRoom 자체로 할지, ChatRoomId로 할지 고민.
-    private final ChatRoom chatRoom;
-    private final Sender sender;
+    @PrimaryKeyColumn(name = "room_id", type = PrimaryKeyType.PARTITIONED, ordinal = 0)
+    private UUID chatRoomId;
+    private Sender sender;
     @Column
-    private final String body;
+    private String body;
 
-    private ChatMessage(ChatRoom chatRoom, Sender sender, String body) {
+    private ChatMessage(UUID chatRoomId, Sender sender, String body) {
         //todo: 애플리케이션 레벨에서는 id 안넣어도 db 레벨에서 넣어주는지 확인
         this.id = UUID.randomUUID();
-        this.chatRoom = chatRoom;
+        this.chatRoomId = chatRoomId;
         this.sender = sender;
         this.body = body;
     }
 
-    public static ChatMessage of(ChatRoom chatRoom, Sender sender, String body) {
-        return new ChatMessage(chatRoom, sender, body);
+    public static ChatMessage of(UUID chatRoomId, Sender sender, String body) {
+        return new ChatMessage(chatRoomId, sender, body);
     }
 
     @Override
     public String toString() {
         return "ChatMessage{" +
             "id=" + id +
-            ", chatRoom=" + chatRoom +
+            ", chatRoomId=" + chatRoomId +
             ", sender=" + sender +
             ", body='" + body + '\'' +
             '}';
