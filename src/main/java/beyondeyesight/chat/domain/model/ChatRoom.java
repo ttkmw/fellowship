@@ -1,4 +1,4 @@
-package beyondeyesight.chat.domain;
+package beyondeyesight.chat.domain.model;
 
 import java.util.UUID;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;

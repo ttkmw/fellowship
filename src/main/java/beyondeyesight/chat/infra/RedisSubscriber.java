@@ -1,6 +1,6 @@
 package beyondeyesight.chat.infra;
 
-import beyondeyesight.chat.domain.ChatMessage;
+import beyondeyesight.chat.domain.model.ChatMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;

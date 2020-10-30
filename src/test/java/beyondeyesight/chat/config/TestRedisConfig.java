@@ -2,7 +2,7 @@ package beyondeyesight.chat.config;
 
 import static org.mockito.Mockito.mock;
 
-import beyondeyesight.chat.domain.ChatMessage;
+import beyondeyesight.chat.domain.model.ChatMessage;
 import beyondeyesight.chat.infra.RedisSubscriber;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

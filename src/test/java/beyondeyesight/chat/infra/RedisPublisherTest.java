@@ -3,7 +3,7 @@ package beyondeyesight.chat.infra;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-import beyondeyesight.chat.domain.ChatMessage;
+import beyondeyesight.chat.domain.model.ChatMessage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
