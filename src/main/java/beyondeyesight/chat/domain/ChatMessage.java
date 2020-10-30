@@ -15,9 +15,8 @@ public class ChatMessage {
 
     @PrimaryKeyColumn(name = "msg_id", type = PrimaryKeyType.CLUSTERED, ordinal = 1)
     private UUID id;
-    //todo: 이거 확인. converting..?
-//    @CassandraType(type = Name.UDT, userTypeName = "chatRoom")
-    //todo: ChatRoom 자체로 할지, ChatRoomId로 할지 고민.
+
+    //todo: ChatRoom으로 해도 될지(id 말고).
     @PrimaryKeyColumn(name = "room_id", type = PrimaryKeyType.PARTITIONED, ordinal = 0)
     private UUID chatRoomId;
     private Sender sender;

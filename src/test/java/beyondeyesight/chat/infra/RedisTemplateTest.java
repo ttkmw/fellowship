@@ -8,7 +8,6 @@ import static org.mockito.Mockito.when;
 import beyondeyesight.chat.config.EmbeddedRedisConfig;
 import beyondeyesight.chat.config.TestRedisConfig;
 import beyondeyesight.chat.domain.ChatMessage;
-import beyondeyesight.chat.domain.ChatRoom;
 import beyondeyesight.chat.domain.Sender;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
