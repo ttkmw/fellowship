@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import beyondeyesight.chat.config.TestCassandraConfig;
 import beyondeyesight.chat.domain.ChatMessage;
-import beyondeyesight.chat.domain.ChatRoom;
 import beyondeyesight.chat.domain.Sender;
 import java.util.UUID;
 import org.cassandraunit.spring.CassandraUnitDependencyInjectionTestExecutionListener;
