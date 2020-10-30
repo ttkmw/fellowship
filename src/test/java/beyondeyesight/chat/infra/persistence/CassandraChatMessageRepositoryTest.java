@@ -3,8 +3,8 @@ package beyondeyesight.chat.infra.persistence;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import beyondeyesight.chat.config.TestCassandraConfig;
-import beyondeyesight.chat.domain.ChatMessage;
-import beyondeyesight.chat.domain.Sender;
+import beyondeyesight.chat.domain.model.ChatMessage;
+import beyondeyesight.chat.domain.model.Sender;
 import java.util.UUID;
 import org.cassandraunit.spring.CassandraUnitDependencyInjectionTestExecutionListener;
 import org.cassandraunit.spring.EmbeddedCassandra;
@@ -27,10 +27,10 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
     DependencyInjectionTestExecutionListener.class}
 )
 @EmbeddedCassandra(timeout = 60000)
-public class ChatMessageRepositoryTest {
+public class CassandraChatMessageRepositoryTest {
 
     @Autowired
-    private ChatMessageRepository chatMessageRepository;
+    private CassandraChatMessageRepository cassandraChatMessageRepository;
 
 
     //todo: ID 생성을 DB 레벨에서 할 수 있는지 확인. 애플리케이션에서는 ID 안넣어도 DB에서 생성해주는지.
@@ -41,7 +41,7 @@ public class ChatMessageRepositoryTest {
         Sender sender = Sender.of(UUID.randomUUID());
         ChatMessage chatMessage = ChatMessage.of(chatRoomId, sender, "chatBody");
         
-        chatMessage = chatMessageRepository.save(chatMessage);
+        chatMessage = cassandraChatMessageRepository.save(chatMessage);
         assertThat(chatMessage).isNotNull();
     }
 }

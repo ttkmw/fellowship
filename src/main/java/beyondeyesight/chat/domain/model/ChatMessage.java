@@ -1,4 +1,4 @@
-package beyondeyesight.chat.domain;
+package beyondeyesight.chat.domain.model;
 
 import java.util.UUID;
 import lombok.Setter;
