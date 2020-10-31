@@ -1,4 +1,4 @@
-package beyondeyesight.chat.infra;
+package beyondeyesight.chat.infra.adapter;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
@@ -25,6 +25,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @ActiveProfiles("test")
 @SpringBootTest(classes = {EmbeddedRedisConfig.class, TestRedisConfig.class})
 public class RedisTemplateTest {
+
     @Autowired
     private RedisTemplate<String, ChatMessage> redisTemplate;
 
@@ -34,6 +35,9 @@ public class RedisTemplateTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    /*
+     * 이 테스트는 restTemplate이 message를 send할 시, RedisSubscriber가 message를 수신하는 것까지 확인한다.
+     * */
     @Test
     public void pubsub() throws InterruptedException, JsonProcessingException {
         UUID chatRoomId = UUID.randomUUID();
@@ -42,6 +46,7 @@ public class RedisTemplateTest {
         when(objectMapper.readValue(anyString(), eq(ChatMessage.class))).thenReturn(chatMessage);
         redisTemplate.convertAndSend(TestRedisConfig.CHANNEL_NAME, chatMessage);
         Thread.sleep(50);
-        verify(simpMessageSendingOperations).convertAndSend("/sub/chat/room/" + "chatRoom", chatMessage);
+        verify(simpMessageSendingOperations)
+            .convertAndSend("/sub/chat/room/" + "chatRoom", chatMessage);
     }
 }

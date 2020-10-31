@@ -34,7 +34,8 @@ dependencies {
 //    //todo: 왜 다른 의존성에 안딸아오는지 체크
     implementation 'it.ozimov:embedded-redis:0.7.2'
     implementation 'org.springframework.cloud:spring-cloud-config-client'
-    implementation 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     compile group: 'org.hectorclient', name: 'hector-core', version: '2.0-0'
     compile group: 'com.google.guava', name: 'guava', version: '19.0'
