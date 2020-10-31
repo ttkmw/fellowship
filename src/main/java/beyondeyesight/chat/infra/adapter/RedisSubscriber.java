@@ -1,4 +1,4 @@
-package beyondeyesight.chat.infra;
+package beyondeyesight.chat.infra.adapter;
 
 import beyondeyesight.chat.domain.model.ChatMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;

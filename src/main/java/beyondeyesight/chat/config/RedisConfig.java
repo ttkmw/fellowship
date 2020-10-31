@@ -1,7 +1,7 @@
 package beyondeyesight.chat.config;
 
 import beyondeyesight.chat.domain.model.ChatMessage;
-import beyondeyesight.chat.infra.RedisSubscriber;
+import beyondeyesight.chat.infra.adapter.RedisSubscriber;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
