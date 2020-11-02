@@ -4,7 +4,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import beyondeyesight.chat.domain.model.ChatMessage;
-import beyondeyesight.chat.domain.model.ChatRoom;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
@@ -23,11 +22,10 @@ class RedisPublisherTest {
     void publish() {
         //given
         RedisPublisher redisPublisher = new RedisPublisher(mockRedisTemplate);
-        ChatRoom mockChatRoom = mock(ChatRoom.class);
         ChatMessage mockChatMessage = mock(ChatMessage.class);
         //when
-        redisPublisher.publish(mockChatRoom, mockChatMessage);
+        redisPublisher.publish(mockChatMessage);
         //then
-        verify(mockRedisTemplate).convertAndSend(mockChatRoom.getName(), mockChatMessage);
+        verify(mockRedisTemplate).convertAndSend(mockChatMessage.getChatRoomId(), mockChatMessage);
     }
 }

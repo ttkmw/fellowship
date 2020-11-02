@@ -1,7 +1,7 @@
 package beyondeyesight.chat.domain.model;
 
 import java.util.UUID;
-import lombok.Setter;
+import lombok.Data;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
@@ -9,7 +9,7 @@ import org.springframework.data.cassandra.core.mapping.Table;
 
 
 //todo: check if serializable is needed
-@Setter
+@Data
 @Table
 public class ChatMessage {
 
@@ -33,6 +33,10 @@ public class ChatMessage {
 
     public static ChatMessage of(UUID chatRoomId, Sender sender, String body) {
         return new ChatMessage(chatRoomId, sender, body);
+    }
+
+    public String getChatRoomId() {
+        return chatRoomId.toString();
     }
 
     @Override
