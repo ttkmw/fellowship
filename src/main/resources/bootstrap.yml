@@ -3,7 +3,7 @@ spring:
     name: chatservice # 애플리케이션 이름은 컨피그 서버의 디렉터리 이름과 일치해야 한다.
   profiles:
     active:
-      local
+      alpha
   cloud:
     config:
       uri: http://localhost:8888

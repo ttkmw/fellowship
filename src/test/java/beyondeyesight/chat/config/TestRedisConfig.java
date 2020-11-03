@@ -36,16 +36,9 @@ public class TestRedisConfig {
     @Bean
     public RedisTemplate<String, ChatMessage> redisTemplate(RedisConnectionFactory lettuceConnectionFactory) {
         RedisTemplate<String, ChatMessage> redisTemplate = new RedisTemplate<>();
-
         redisTemplate.setConnectionFactory(lettuceConnectionFactory);
         redisTemplate.setKeySerializer(new StringRedisSerializer());
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setVisibility(PropertyAccessor.ALL, Visibility.ANY);
-        Jackson2JsonRedisSerializer<ChatMessage> serializer = new Jackson2JsonRedisSerializer<>(
-            ChatMessage.class);
-        serializer.setObjectMapper(objectMapper);
-        redisTemplate.setValueSerializer(serializer);
-        redisTemplate.afterPropertiesSet();
+        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(ChatMessage.class));
         return redisTemplate;
     }
 
