@@ -60,12 +60,13 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     @Nonnull
     public SchemaAction getSchemaAction() {
         //todo: 운영시 스키마 정책 확인
-        return SchemaAction.RECREATE;
+        //todo: 왜 RECREATE일 때 터지는지 확인
+        return SchemaAction.CREATE_IF_NOT_EXISTS;
     }
 
     @Override
     @Nonnull
     public String[] getEntityBasePackages() {
-        return new String[] {"beyondeyesight.chat.domain"};
+        return new String[]{"beyondeyesight.chat.domain"};
     }
 }
