@@ -40,9 +40,10 @@ public class RedisTemplateTest {
      * */
     @Test
     public void pubsub() throws InterruptedException, JsonProcessingException {
+        UUID id = UUID.randomUUID();
         UUID chatRoomId = UUID.randomUUID();
         Sender sender = Sender.of(UUID.randomUUID());
-        ChatMessage chatMessage = ChatMessage.of(chatRoomId, sender, "testBody");
+        ChatMessage chatMessage = ChatMessage.of(id, chatRoomId, sender, "testBody");
         when(objectMapper.readValue(anyString(), eq(ChatMessage.class))).thenReturn(chatMessage);
         redisTemplate.convertAndSend(TestRedisConfig.CHANNEL_NAME, chatMessage);
         Thread.sleep(50);

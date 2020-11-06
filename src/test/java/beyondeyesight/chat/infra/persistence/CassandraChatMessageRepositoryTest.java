@@ -37,9 +37,10 @@ public class CassandraChatMessageRepositoryTest {
     @DisplayName("#save() : should not be null after saving entity")
     @Test
     void save() {
+        UUID id = UUID.randomUUID();
         UUID chatRoomId = UUID.randomUUID();
         Sender sender = Sender.of(UUID.randomUUID());
-        ChatMessage chatMessage = ChatMessage.of(chatRoomId, sender, "chatBody");
+        ChatMessage chatMessage = ChatMessage.of(id, chatRoomId, sender, "chatBody");
         
         chatMessage = cassandraChatMessageRepository.save(chatMessage);
         assertThat(chatMessage).isNotNull();
