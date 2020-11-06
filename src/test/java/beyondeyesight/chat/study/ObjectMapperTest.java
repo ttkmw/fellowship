@@ -1,24 +1,26 @@
 package beyondeyesight.chat.study;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = ObjectMapper.class)
+import beyondeyesight.chat.domain.model.ChatMessage;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.UUID;
+import org.junit.Test;
+
 public class ObjectMapperTest {
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
     @Test
-    public void haha() {
-        System.out.println("kkk");
-        System.out.println(objectMapper);
+    public void readValue() throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        UUID testId = UUID.randomUUID();
+        String publishedMessage = "{\"id\":" + "\"" + testId + "\","
+            + "\"chatRoomId\":" + "\"" + testId + "\","
+            + "\"sender\":{\"id\":\"" + testId + "\"},"
+            + "\"body\":\"testBody\"}";
+        ChatMessage chatMessage = objectMapper.readValue(publishedMessage, ChatMessage.class);
+        assertThat(chatMessage).isNotNull();
     }
 
 }
