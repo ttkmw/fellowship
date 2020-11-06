@@ -23,7 +23,18 @@ public class ChatMessage {
     @Column
     private String body;
 
-    private ChatMessage(UUID chatRoomId, Sender sender, String body) {
+    //deserialize를 위해 필
+    private ChatMessage() {}
+
+    private ChatMessage(UUID id, UUID chatRoomId, Sender sender, String body) {
+        this.id = id;
+        this.chatRoomId = chatRoomId;
+        this.sender = sender;
+        this.body = body;
+    }
+
+    //todo: remove
+    public ChatMessage(UUID chatRoomId, Sender sender, String body) {
         //todo: 애플리케이션 레벨에서는 id 안넣어도 db 레벨에서 넣어주는지 확인
         this.id = UUID.randomUUID();
         this.chatRoomId = chatRoomId;
