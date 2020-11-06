@@ -33,17 +33,9 @@ public class ChatMessage {
         this.body = body;
     }
 
-    //todo: remove
-    public ChatMessage(UUID chatRoomId, Sender sender, String body) {
-        //todo: 애플리케이션 레벨에서는 id 안넣어도 db 레벨에서 넣어주는지 확인
-        this.id = UUID.randomUUID();
-        this.chatRoomId = chatRoomId;
-        this.sender = sender;
-        this.body = body;
-    }
 
-    public static ChatMessage of(UUID chatRoomId, Sender sender, String body) {
-        return new ChatMessage(chatRoomId, sender, body);
+    public static ChatMessage of(UUID id, UUID chatRoomId, Sender sender, String body) {
+        return new ChatMessage(id, chatRoomId, sender, body);
     }
 
     public String getChatRoomId() {
