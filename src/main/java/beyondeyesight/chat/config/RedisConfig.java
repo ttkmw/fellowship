@@ -21,7 +21,8 @@ public class RedisConfig {
     public RedisMessageListenerContainer redisMessageListener(RedisConnectionFactory connectionFactory, ObjectMapper objectMapper, SimpMessageSendingOperations simpMessageSendingOperations) {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-        container.addMessageListener(messageListenerAdapter(connectionFactory, objectMapper, simpMessageSendingOperations), new ChannelTopic("TEST_CHANNEL"));
+        //todo: refac
+        container.addMessageListener(messageListenerAdapter(connectionFactory, objectMapper, simpMessageSendingOperations), new ChannelTopic("110841e3-e6fb-4191-8fd8-5674a5107c33"));
         return container;
     }
 

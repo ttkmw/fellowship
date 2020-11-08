@@ -13,6 +13,7 @@ public class Sender {
     //deserialize를 위해 필요
     private Sender() {
     }
+
     //deserialize를 위해 필요
     private Sender(String id) {
         this.id = UUID.fromString(id);

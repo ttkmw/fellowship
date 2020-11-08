@@ -1,4 +1,4 @@
-package beyondeyesight.chat.config;
+package beyondeyesight.chat.config.websocket;
 
 import java.util.Optional;
 import org.slf4j.Logger;
@@ -24,7 +24,7 @@ import org.springframework.web.socket.handler.WebSocketHandlerDecorator;
  *
  * @author Sebastien Gerard
  */
-public class EmaWebSocketHandlerDecorator extends WebSocketHandlerDecorator {
+class EmaWebSocketHandlerDecorator extends WebSocketHandlerDecorator {
 
     private static final Logger logger = LoggerFactory.getLogger(EmaWebSocketHandlerDecorator.class);
     private static final String END_OF_STRING = "\u0000";

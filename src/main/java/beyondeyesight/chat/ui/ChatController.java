@@ -14,5 +14,6 @@ public class ChatController {
     @MessageMapping("/chat/message")
     public void send(ChatMessage chatMessage) {
         //todo: implement
+        chatMessageService.send(chatMessage);
     }
 }

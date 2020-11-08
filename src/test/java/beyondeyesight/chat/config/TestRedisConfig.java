@@ -4,8 +4,6 @@ import static org.mockito.Mockito.mock;
 
 import beyondeyesight.chat.domain.model.ChatMessage;
 import beyondeyesight.chat.infra.adapter.RedisSubscriber;
-import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
