@@ -48,6 +48,6 @@ public class RedisTemplateTest {
         redisTemplate.convertAndSend(TestRedisConfig.CHANNEL_NAME, chatMessage);
         Thread.sleep(50);
         verify(simpMessageSendingOperations)
-            .convertAndSend("/sub/chat/room/" + "chatRoom", chatMessage);
+            .convertAndSend("/sub/chat/room/" + "110841e3-e6fb-4191-8fd8-5674a5107c33", chatMessage);
     }
 }
