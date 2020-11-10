@@ -32,7 +32,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-cassandra'
     implementation 'org.springframework.security:spring-security-rsa'
 //    //todo: 왜 다른 의존성에 안딸아오는지 체크
-    implementation 'it.ozimov:embedded-redis:0.7.2'
     implementation 'org.springframework.cloud:spring-cloud-config-client'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     compile group: 'org.hectorclient', name: 'hector-core', version: '2.0-0'
@@ -42,6 +41,7 @@ dependencies {
     compile group: 'org.webjars', name: 'sockjs-client', version: '1.1.2'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+    testCompile 'it.ozimov:embedded-redis:0.7.2'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
     testCompile('org.cassandraunit:cassandra-unit-spring:4.3.1.0')
     testImplementation 'org.mockito:mockito-core'
