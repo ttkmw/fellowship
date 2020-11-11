@@ -12,7 +12,6 @@ import org.springframework.data.cassandra.config.SchemaAction;
 import org.springframework.data.cassandra.core.cql.keyspace.CreateKeyspaceSpecification;
 import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
 
-@Profile("local")
 @Configuration
 @EnableCassandraRepositories(basePackages = "beyondeyesight.chat.infra.persistence")
 public class CassandraConfig extends AbstractCassandraConfiguration {
