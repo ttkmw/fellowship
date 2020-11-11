@@ -2,12 +2,12 @@ spring:
   profiles:
     active: alpha
   redis:
-    host: localhost
+    host: redis
     port: 6379
 
   data:
     cassandra:
-      contact-points: localhost
+      contact-points: cassandra
       port: 9042
       keyspace-name: testKeySpace
       local-datacenter: DC1
