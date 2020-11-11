@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: alpha
+    active: dev
   redis:
     host: redis
     port: 6379
