@@ -13,6 +13,6 @@ class SenderTest {
     @Test
     void of() {
         Sender sender = Sender.of(UUID.randomUUID());
-        assertThat(sender).isNotNull();
+        assertThat(sender).isNull();
     }
 }
