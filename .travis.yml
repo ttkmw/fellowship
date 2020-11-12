@@ -4,3 +4,10 @@ jdk:
 branches:
   only:
     - develop
+sudo: required
+services:
+  - docker
+notifications:
+  email:
+    - wom2277@naver.com
+    on_failure: always
