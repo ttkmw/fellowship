@@ -13,4 +13,4 @@ echo ">>>>>>>>>>>> Database Server has started"
 echo "********************************************************"
 echo ">>>>>>>>>>>> Starting chat-service "
 echo "********************************************************"
-java -jar /usr/local/chat-service/chat-0.0.1-SNAPSHOT.jar
+java -jar /usr/local/chat-service/chat-0.0.1.jar
