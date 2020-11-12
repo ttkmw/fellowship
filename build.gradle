@@ -2,10 +2,11 @@ plugins {
     id 'org.springframework.boot' version '2.3.1.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
+    id "com.palantir.docker" version "0.22.1"
 }
 
 group = 'beyond-eyesight'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 sourceCompatibility = '1.8'
 
 repositories {
@@ -47,7 +48,13 @@ dependencies {
     testImplementation 'org.mockito:mockito-core'
 }
 
-
 test {
     useJUnitPlatform()
+}
+
+docker {
+    name "beyond-eyesight/chat:" + version
+    files "src/main/docker/run.sh"
+    copySpec.from("build/libs").into("output")
+    dockerfile project.file('src/main/docker/Dockerfile')
 }
