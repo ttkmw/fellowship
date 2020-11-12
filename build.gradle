@@ -3,9 +3,10 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
     id "com.palantir.docker" version "0.22.1"
+    id "com.palantir.docker-run" version "0.22.1"
 }
 
-group = 'beyond-eyesight'
+group = 'beyondeyesight'
 version = '0.0.1'
 sourceCompatibility = '1.8'
 
@@ -53,8 +54,17 @@ test {
 }
 
 docker {
-    name "beyond-eyesight/chat:" + version
+    name "${project.group}/${project.name}:${project.version}"
+    //todo: 하드 코딩을 지우고 싶다.
     files "src/main/docker/run.sh"
     copySpec.from("build/libs").into("output")
     dockerfile project.file('src/main/docker/Dockerfile')
+    tag 'DockerHub', "${project.group}/${project.name}:${project.version}"
+}
+
+dockerRun {
+    name "${project.name}"
+    image "${project.group}/${project.name}:${project.version}"
+    ports '8080:8080'
+    clean true
 }
