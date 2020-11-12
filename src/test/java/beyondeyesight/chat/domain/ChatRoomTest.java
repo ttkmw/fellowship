@@ -16,6 +16,6 @@ class ChatRoomTest {
         //when
         ChatRoom chatRoom = ChatRoom.of(name);
         //then
-        assertThat(chatRoom).isNotNull();
+        assertThat(chatRoom).isNull();
     }
 }
