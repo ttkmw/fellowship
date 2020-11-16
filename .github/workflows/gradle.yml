@@ -17,28 +17,39 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: Set up JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      - name: Build with Gradle
-        run: ./gradlew build
-      - name: install ecs-cli
-        uses: marocchino/setup-ecs-cli@v1
-        with:
-          version: "v1.18.0"
+      #      - uses: lukka/set-shell-env@v1
+      #        name: setup shell variables
+      #        with:
+      #          args: NEW_VAR_NAME='haha'
+      #          NEW_VAR_NAME: new_var_value
+      #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #          EXAMPLE: hahahaha
       - name: Bump version and push tag
-        id: tag_version
-        uses: anothrNick/github-tag-action@master
+        #        todo: 왜 sudo가 필요하지..?
+        run: export BUILD_NAME=haha
+          |  chmod +x ./src/main/resources/scripts/tag_build.sh
+          | sudo sh ./src/main/resources/scripts/tag_build.sh
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO_OWNER: p-vibe
-          RELEASE_BRANCHES: develop
-
-
-
+          TAG_NAME: haha
+#        run: echo $GITHUB_TOKENT
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          BUILD_NAME: chat-${{github.ref}}
+#          REPO_OWNER: beyond-eyesight
+#          RELEASE_BRANCHES: develop
+#      - name: Set up JDK 1.8
+#        uses: actions/setup-java@v1
+#        with:
+#          java-version: 1.8
+#
+#      - name: Grant execute permission for gradlew
+#        run: chmod +x gradlew
+#      - name: Build with Gradle
+#        run: ./gradlew build
+#      - name: install ecs-cli
+#        uses: marocchino/setup-ecs-cli@v1
+#        with:
+#          version: "v1.18.0"
 
 
 #    - name: Create a GitHub release
