@@ -35,5 +35,7 @@ jobs:
       uses: rymndhng/release-on-push-action@master
       with:
         bump_version_scheme: minor
+    - name: create docker image
+      run: ./gradlew docker
 
 
