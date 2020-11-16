@@ -13,6 +13,8 @@ jobs:
   build:
     name: setup
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
     - name: checkout
@@ -29,3 +31,9 @@ jobs:
       uses: marocchino/setup-ecs-cli@v1
       with:
         version: "v1.18.0"
+    - name: tag/release on push action
+    - uses: rymndhng/release-on-push-action@master
+      with:
+        bump_version_scheme: minor
+
+
