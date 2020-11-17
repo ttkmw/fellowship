@@ -13,7 +13,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: tag release
+      uses: ./.github/workflows/actions/tag_release
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BUILD_NAME: $GITHUB_REF
+        GITHUB_REPOSITORY: $GITHUB_REPOSITORY
+        GITHUB_API_URL: $GITHUB_API_URL
+        GITHUB_TARGET_BRANCH: develop
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
@@ -22,6 +31,4 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-    - uses: ./.github/workflows/actions
-      with:
-        MY_NAME: "keep-my-word"
+
