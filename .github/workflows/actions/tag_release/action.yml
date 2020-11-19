@@ -22,7 +22,7 @@ inputs:
   GITHUB_TARGET_BRANCH:
     description: "target branch to merge"
     required: true
-    default: develop
+    default: main
 
 runs:
   using: "docker"
