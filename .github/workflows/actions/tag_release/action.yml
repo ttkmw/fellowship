@@ -23,7 +23,6 @@ inputs:
     description: "target branch to merge"
     required: true
     default: main
-
 runs:
   using: "docker"
   image: "Dockerfile"
