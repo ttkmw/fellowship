@@ -22,8 +22,8 @@ jobs:
     - name: Login to DockerHub
       uses: docker/login-action@v1
       with:
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+        username: wom2277
+        password: 3985628a-80c7-4e02-8501-fa1653517cd3
     - name: Push Docker image to Docker Hub
       uses: docker/build-push-action@v2
       with:
