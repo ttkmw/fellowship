@@ -16,10 +16,5 @@
     }
   ],
   "volumes": [],
-  "networkMode": "awsvpc",
-  "memory": "512",
-  "cpu": "256",
-  "family": "beyondeyesight",
-  "taskRoleArn": "",
-  "placementConstraints": []
+  "networkMode": "awsvpc"
 }
