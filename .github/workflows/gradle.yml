@@ -83,11 +83,10 @@ jobs:
         task-definition: task-definition.json
         container-name: chat
         image: ${{ steps.build-image.outputs.image }}
-
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: chat-service
+        service: chat
         cluster: test-ecs
         wait-for-service-stability: true
