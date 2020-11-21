@@ -2,8 +2,8 @@
   "inferenceAccelerators": [],
   "containerDefinitions": [
     {
-      "name": "sample-app",
-      "image": "beyondeyesight:latest",
+      "name": "chat",
+      "image": "beyondeyesight/chat:latest",
       "resourceRequirements": null,
       "essential": true,
       "portMappings": [
@@ -17,7 +17,9 @@
   ],
   "memory": "512",
   "cpu": "256",
-  "family": "sample-app-service",
+  "family": "chat-service",
   "volumes": [],
   "networkMode": "awsvpc"
 }
+
+
