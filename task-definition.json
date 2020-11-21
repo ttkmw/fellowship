@@ -15,6 +15,7 @@
       ]
     }
   ],
+  "family": "beyondeyesight",
   "volumes": [],
   "networkMode": "awsvpc"
 }
