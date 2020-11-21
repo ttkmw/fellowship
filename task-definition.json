@@ -5,8 +5,8 @@
   "inferenceAccelerators": [],
   "containerDefinitions": [
     {
-      "name": "ecs-devops-sandbox",
-      "image": "ecs-devops-sandbox-repository:00000",
+      "name": "chat",
+      "image": "beyondeyesight/chat:latest",
       "resourceRequirements": null,
       "essential": true,
       "portMappings": [
