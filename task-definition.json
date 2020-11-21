@@ -22,7 +22,6 @@
   "networkMode": "awsvpc",
   "memory": "512",
   "cpu": "256",
-  "executionRoleArn": "arn:aws:iam:chilvibe:ecs:ap-northeast-2:196362170811:cluster/test-ecs",
   "family": "beyondeyesight",
   "taskRoleArn": "",
   "placementConstraints": []
