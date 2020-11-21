@@ -2,7 +2,7 @@
   "inferenceAccelerators": [],
   "containerDefinitions": [
     {
-      "name": "beyondeyesight/chat",
+      "name": "chat",
       "image": "beyondeyesight:latest",
       "resourceRequirements": null,
       "essential": true,
