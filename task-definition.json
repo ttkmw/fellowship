@@ -1,7 +1,4 @@
 {
-  "requiresCompatibilities": [
-    "FARGATE"
-  ],
   "inferenceAccelerators": [],
   "containerDefinitions": [
     {
