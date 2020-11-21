@@ -5,7 +5,7 @@
   "inferenceAccelerators": [],
   "containerDefinitions": [
     {
-      "name": "7560670ee5344c82a36fd802c62d6688",
+      "name": "sample-app",
       "image": "beyondeyesight:latest",
       "resourceRequirements": null,
       "essential": true,
