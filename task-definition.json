@@ -1,0 +1,23 @@
+{
+  "inferenceAccelerators": [],
+  "containerDefinitions": [
+    {
+      "name": "sample-app",
+      "image": "chat:latest",
+      "resourceRequirements": null,
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": "8080",
+          "protocol": "tcp"
+        }
+
+      ]
+    }
+  ],
+  "memory": "512",
+  "cpu": "256",
+  "family": "chat-family",
+  "volumes": [],
+  "networkMode": "awsvpc"
+}
