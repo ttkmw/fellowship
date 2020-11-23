@@ -88,10 +88,10 @@ jobs:
         container-name: sample-app
         image: beyondeyesight/chat@${{ steps.docker_build.outputs.digest }}
 
-#    - name: Deploy Amazon ECS task definition
-#      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-#      with:
-#        task-definition: ${{ steps.task-def.outputs.task-definition }}
-#        service: sample-app-service
-#        cluster: gogo
-#        wait-for-service-stability: true
+    - name: Deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        service: sample-app-service
+        cluster: gogo
+        wait-for-service-stability: true
