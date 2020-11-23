@@ -56,7 +56,7 @@ jobs:
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         service: chat-service
-        cluster: beyondeyesight
+        cluster: beyond-eyesight
         wait-for-service-stability: true
     - name: Bump version and push tag
       id: tag_version
