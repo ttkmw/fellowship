@@ -40,20 +40,20 @@ jobs:
         push: true
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
-    - name: Bump version and push tag
-      id: tag_version
-      uses: anothrNick/github-tag-action@1.33.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        RELEASE_BRANCHES: main, release/*
-        WITH_V: true
-    - name: Create a GitHub release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ steps.tag_version.outputs.new_tag }}
-        release_name: Release ${{ steps.tag_version.outputs.new_tag }}
+#    - name: Bump version and push tag
+#      id: tag_version
+#      uses: anothrNick/github-tag-action@1.33.0
+#      env:
+#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        RELEASE_BRANCHES: main, release/*
+#        WITH_V: true
+#    - name: Create a GitHub release
+#      uses: actions/create-release@v1
+#      env:
+#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      with:
+#        tag_name: ${{ steps.tag_version.outputs.new_tag }}
+#        release_name: Release ${{ steps.tag_version.outputs.new_tag }}
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
