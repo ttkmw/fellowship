@@ -2,23 +2,69 @@ plugins {
     id 'org.springframework.boot' version '2.3.1.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
+    id "com.palantir.docker" version "0.22.1"
+    id "com.palantir.docker-run" version "0.22.1"
 }
 
-group = 'beyond-eyesight'
-version = '0.0.1-SNAPSHOT'
+group = 'beyondeyesight'
+version = '0.0.1'
 sourceCompatibility = '1.8'
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+ext {
+    set('springCloudVersion', "Hoxton.SR8")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
+    implementation 'org.springframework.boot:spring-boot-starter-data-cassandra'
+    implementation 'org.springframework.security:spring-security-rsa'
+    implementation 'it.ozimov:embedded-redis:0.7.2'
+    implementation 'org.springframework.cloud:spring-cloud-config-client'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    compile group: 'org.hectorclient', name: 'hector-core', version: '2.0-0'
+    //todo: 왜 다른 의존성에 안딸아오는지 체크
+    compile group: 'com.google.guava', name: 'guava', version: '19.0'
+    compile group: 'com.datastax.cassandra', name: 'cassandra-driver-core', version: '4.0.0', ext: 'pom'
+    compile group: 'org.webjars', name: 'stomp-websocket', version: '2.3.3-1'
+    compile group: 'org.webjars', name: 'sockjs-client', version: '1.1.2'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile('org.cassandraunit:cassandra-unit-spring:4.3.1.0')
+    testImplementation 'org.mockito:mockito-core'
 }
 
 test {
     useJUnitPlatform()
+}
+
+docker {
+    name "${project.group}/${project.name}:${project.version}"
+    //todo: 하드 코딩을 지우고 싶다.
+    files "src/main/docker/run.sh"
+    copySpec.from("build/libs").into("output")
+    dockerfile project.file('src/main/docker/Dockerfile')
+    tag 'DockerHub', "${project.group}/${project.name}:${project.version}"
+}
+
+dockerRun {
+    name "${project.name}"
+    image "${project.group}/${project.name}:${project.version}"
+    ports '8080:8080'
+    clean true
 }
