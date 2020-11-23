@@ -2,7 +2,7 @@
   "inferenceAccelerators": [],
   "containerDefinitions": [
     {
-      "name": "sample-app",
+      "name": "chat",
       "image": "chat:latest",
       "resourceRequirements": null,
       "essential": true,
