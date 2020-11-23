@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: dev
+  redis:
+    host: redis
+    port: 6379
+
+  data:
+    cassandra:
+      contact-points: cassandra
+      port: 9042
+      keyspace-name: testKeySpace
+      local-datacenter: DC1
+
