@@ -9,10 +9,16 @@ on:
   pull_request:
     branches: [ develop ]
 
+
+
 jobs:
-  build:
+  build_and_test:
+    env:
+      REPOSITORY_NAME: beyondeyesight/chat
     runs-on: ubuntu-latest
     steps:
+      - name: echo repo
+        run: echo $REPOSITORY_NAME
       - name: checkout
         uses: actions/checkout@v2
       - name: Set up JDK 1.8
