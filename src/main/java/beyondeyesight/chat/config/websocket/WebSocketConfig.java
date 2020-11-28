@@ -18,8 +18,11 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     }
 
 
+    //todo: 여러개의 endpoint 등록하는 것 좀 더 깔끔하게 할 수 있을듯
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
+        registry.addEndpoint("/ws-stomp")
+            .setAllowedOrigins("*");
         registry.addEndpoint("/ws-stomp")
             .setAllowedOrigins("*")
             .withSockJS();
