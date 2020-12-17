@@ -31,6 +31,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void configureWebSocketTransport(WebSocketTransportRegistration registration) {
         registration.addDecoratorFactory(
-            EmaWebSocketHandlerDecorator::new);
+            EOSAdderForBrowser::new);
     }
 }

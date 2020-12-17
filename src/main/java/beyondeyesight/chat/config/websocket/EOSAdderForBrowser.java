@@ -24,13 +24,13 @@ import org.springframework.web.socket.handler.WebSocketHandlerDecorator;
  *
  * @author Sebastien Gerard
  */
-class EmaWebSocketHandlerDecorator extends WebSocketHandlerDecorator {
+class EOSAdderForBrowser extends WebSocketHandlerDecorator {
 
-    private static final Logger logger = LoggerFactory.getLogger(EmaWebSocketHandlerDecorator.class);
+    private static final Logger logger = LoggerFactory.getLogger(EOSAdderForBrowser.class);
     private static final String END_OF_STRING = "\u0000";
     public static final String NEW_LINE = "\n";
 
-    public EmaWebSocketHandlerDecorator(WebSocketHandler webSocketHandler) {
+    public EOSAdderForBrowser(WebSocketHandler webSocketHandler) {
         super(webSocketHandler);
     }
 
