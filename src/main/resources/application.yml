@@ -12,3 +12,13 @@ eureka:
     fetch-registry: true # 유레카 클라이언트가 레지스트리의 복사본을 가져오도롱 지정. true로 설정 시 검색할 때마다 유레카 서비스를 호출하는 대신 레지스트리가 로컬로 캐시된다. 30초마다 클라이언트는 유레카 서비스에 레지스트리 변경 사항 여부를 재확인한다.
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          cassandra:
+            core:
+              cql:
+                CqlTemplate: DEBUG

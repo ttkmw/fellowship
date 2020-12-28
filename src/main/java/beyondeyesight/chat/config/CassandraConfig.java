@@ -2,14 +2,17 @@ package beyondeyesight.chat.config;
 
 import java.util.Collections;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.cassandra.config.AbstractCassandraConfiguration;
 import org.springframework.data.cassandra.config.CqlSessionFactoryBean;
 import org.springframework.data.cassandra.config.SchemaAction;
 import org.springframework.data.cassandra.core.cql.keyspace.CreateKeyspaceSpecification;
+import org.springframework.data.cassandra.core.cql.session.init.KeyspacePopulator;
+import org.springframework.data.cassandra.core.cql.session.init.ResourceKeyspacePopulator;
 import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
 
 @Configuration
@@ -67,5 +70,11 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     @Nonnull
     public String[] getEntityBasePackages() {
         return new String[]{"beyondeyesight.chat.domain"};
+    }
+
+    @Nullable
+    @Override
+    protected KeyspacePopulator keyspacePopulator() {
+        return new ResourceKeyspacePopulator(new ClassPathResource("db/cql/db-data.cql"));
     }
 }

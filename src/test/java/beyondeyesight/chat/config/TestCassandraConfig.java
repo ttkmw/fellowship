@@ -5,13 +5,16 @@ import javax.annotation.Nonnull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.cassandra.config.AbstractCassandraConfiguration;
 import org.springframework.data.cassandra.config.CqlSessionFactoryBean;
 import org.springframework.data.cassandra.config.SchemaAction;
 import org.springframework.data.cassandra.core.cql.keyspace.CreateKeyspaceSpecification;
+import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
 import org.springframework.lang.NonNull;
 
+@Profile("test")
+@EnableCassandraRepositories(basePackages = "beyondeyesight.chat.infra.persistence")
 @TestConfiguration
 public class TestCassandraConfig extends AbstractCassandraConfiguration {
 
@@ -28,8 +31,7 @@ public class TestCassandraConfig extends AbstractCassandraConfiguration {
     private String localDatacenter;
 
     @Override
-    @Bean("testCassandraSession")
-    @Primary
+    @Bean
     @Nonnull
     public CqlSessionFactoryBean cassandraSession() {
         CqlSessionFactoryBean cqlSessionFactoryBean = new CqlSessionFactoryBean();
