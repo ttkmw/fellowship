@@ -4,6 +4,6 @@ import beyondeyesight.chat.domain.model.ChatRoom;
 import java.util.UUID;
 import org.springframework.data.cassandra.repository.CassandraRepository;
 
-public interface CassandraChatRoomRepository extends CassandraRepository<ChatRoom, UUID> {
+public interface ChatRoomCassandraRepository extends CassandraRepository<ChatRoom, UUID> {
 
 }

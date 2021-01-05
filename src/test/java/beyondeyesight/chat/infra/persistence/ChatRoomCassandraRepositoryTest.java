@@ -25,14 +25,14 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {TestCassandraConfig.class}, loader = SpringBootContextLoader.class)
 @CassandraDataSet(keyspace = "testKeySpace", value = {"db/cql/init_chatRooms.cql"})
-public class CassandraChatRoomRepositoryTest {
+public class ChatRoomCassandraRepositoryTest {
 
     @Autowired
-    private CassandraChatRoomRepository cassandraChatRoomRepository;
+    private ChatRoomCassandraRepository chatRoomCassandraRepository;
 
     @Test
     public void findAll() {
-        assertThat(cassandraChatRoomRepository.findAll()).isNotEmpty();
+        assertThat(chatRoomCassandraRepository.findAll()).isNotEmpty();
     }
 
 }

@@ -31,12 +31,13 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 @EmbeddedCassandra(timeout = 60000)
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {TestCassandraConfig.class}, loader = SpringBootContextLoader.class)
-public class CassandraChatMessageRepositoryTest {
+public class ChatMessageCassandraRepositoryTest {
 
     @Autowired
-    private CassandraChatMessageRepository cassandraChatMessageRepository;
+    private ChatMessageCassandraRepository chatMessageCassandraRepository;
 
-    @Autowired CassandraChatRoomRepository cassandraChatRoomRepository;
+    @Autowired
+    ChatRoomCassandraRepository chatRoomCassandraRepository;
 
 
     //todo: ID 생성을 DB 레벨에서 할 수 있는지 확인. 애플리케이션에서는 ID 안넣어도 DB에서 생성해주는지.
@@ -48,7 +49,7 @@ public class CassandraChatMessageRepositoryTest {
         Sender sender = Sender.of(UUID.randomUUID());
         ChatMessage chatMessage = ChatMessage.of(id, chatRoomId, sender, "chatBody");
 
-        chatMessage = cassandraChatMessageRepository.save(chatMessage);
+        chatMessage = chatMessageCassandraRepository.save(chatMessage);
         assertThat(chatMessage).isNotNull();
     }
 }
