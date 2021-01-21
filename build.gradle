@@ -25,18 +25,19 @@ dependencyManagement {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-websocket'
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
-    implementation 'org.springframework.boot:spring-boot-starter-data-cassandra'
-    implementation 'org.springframework.security:spring-security-rsa'
-    implementation 'it.ozimov:embedded-redis:0.7.2'
-    implementation 'org.springframework.cloud:spring-cloud-config-client'
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile 'org.springframework.boot:spring-boot-starter-websocket'
+    compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    compile 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
+    compile 'org.springframework.boot:spring-boot-starter-data-cassandra'
+    compile 'org.springframework.security:spring-security-rsa'
+    compile 'it.ozimov:embedded-redis:0.7.2'
+    compile 'org.springframework.cloud:spring-cloud-config-client'
+    compile 'org.springframework.boot:spring-boot-starter-data-redis'
     compile group: 'org.hectorclient', name: 'hector-core', version: '2.0-0'
+    compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     //todo: 왜 다른 의존성에 안딸아오는지 체크
     compile group: 'com.google.guava', name: 'guava', version: '19.0'
     compile group: 'com.datastax.cassandra', name: 'cassandra-driver-core', version: '4.0.0', ext: 'pom'
@@ -47,6 +48,13 @@ dependencies {
     testCompile 'org.springframework.boot:spring-boot-starter-test'
     testCompile('org.cassandraunit:cassandra-unit-spring:4.3.1.0')
     testImplementation 'org.mockito:mockito-core'
+}
+
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
 }
 
 test {
