@@ -10,9 +10,9 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 @EnableDiscoveryClient
 @EnableCircuitBreaker // 스프링 클라우드에 이 서비스에서 히스트릭스를 사용할 것이라고 지정
 @RefreshScope
-public class ChatApplication {
+public class FellowshipApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ChatApplication.class, args);
+        SpringApplication.run(FellowshipApplication.class, args);
     }
 
 }
